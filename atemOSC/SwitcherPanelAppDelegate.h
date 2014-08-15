@@ -32,6 +32,7 @@
 #import <Cocoa/Cocoa.h>
 #import "VVOSC/VVOSC.h"
 #import "AMSerialPort.h"
+#import "xbee.h"
 
 class MixEffectBlockMonitor;
 class SwitcherMonitor;
