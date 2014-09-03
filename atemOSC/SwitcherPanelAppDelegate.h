@@ -33,6 +33,7 @@
 #import "VVOSC/VVOSC.h"
 #import "AMSerialPort.h"
 #import "xbee.h"
+#import "xbeep.h"
 
 class MixEffectBlockMonitor;
 class SwitcherMonitor;

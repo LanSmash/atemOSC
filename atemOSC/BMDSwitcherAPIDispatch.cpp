@@ -28,6 +28,8 @@
 
 #include "BMDSwitcherAPI.h"
 #include <pthread.h>
+#include "xbee.h"
+#include "xbeep.h"
 
 #define kBMDSwitcherAPI_BundlePath "/Library/Application Support/Blackmagic Design/Switchers/BMDSwitcherAPI.bundle"
 
