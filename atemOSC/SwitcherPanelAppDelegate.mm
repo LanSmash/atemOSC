@@ -1237,6 +1237,8 @@ finish:
             // listen for data in a separate thread
             [port readDataInBackground];
             
+            // test send channel #1 because no ATEM is connected during this software test.
+            [self send:self Channel:1];
             
         } else { // an error occured while creating port
             
@@ -1293,8 +1295,27 @@ finish:
     
     while (aPort = [enumerator nextObject]) {
         [serialSelectMenu addItemWithTitle:[aPort bsdPath]];
+        // Last item in menu appears to be the most recently plugged in device.
+        // Select it by default.
+        [serialSelectMenu selectItemWithTitle:[aPort bsdPath]];
     }
 }
+
+- (IBAction)SendTest:(id)sender {
+    {NSLog(@"SendTest: Sending Test Radio Packet");
+        
+        //P0 5
+        const char high[] = "\x7E\x00\x10\x17\x01\x00\x13\xA2\x00\x40\xB8\x81\x64\xFF\xFE\x02\x50\x30\x05\xD1";
+        //P0 4
+        const char low[] = "\x7E\x00\x10\x17\x01\x00\x13\xA2\x00\x40\xB8\x81\x64\xFF\xFE\x02\x50\x30\x04\xD2";
+    size_t length = (sizeof high) - 1; //string literals have implicit trailing '\0'
+        
+    NSData *data = [NSData dataWithBytes:high length:length];
+        
+    [port writeData:data error:NULL];
+    [port writeString:@"B" usingEncoding:NSUTF8StringEncoding error:NULL];}
+}
+
 
 - (IBAction)send:(id)sender Channel:(int)channel {
 

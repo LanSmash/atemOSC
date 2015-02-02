@@ -194,7 +194,6 @@ void AMSerialPortWasRemovedNotification(void *refcon, io_iterator_t iterator);
 		// Since the port was removed, one should obviously not attempt to use it anymore -- so 'close' it.
 		// -close does nothing if the port was never opened.
 		[serialPort close];
-		
 		[portList removeObject:serialPort];
 		[removedPorts addObject:serialPort];
 	}
